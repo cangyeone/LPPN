@@ -40,8 +40,9 @@ the output file is num_of_feature-num_of_stride.stat.txt in output folder.
 ## Contact 
 cangye@hotmail.com
 
-## Authors and acknowledgment
+## Authors
 Ziye Yu, cangye@hotmail.com
+
 Weitao Wang, ...
 
 ## License
