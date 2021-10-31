@@ -76,7 +76,7 @@ Pg,3581.051,0.941,2011-09-18 15:38:31.055625,2.801,12711.759765625,X1.45001,112.
 cangye@hotmail.com
 
 ## Authors
-Ziye Yu, Weitao Wang
+Ziye Yu, Weitao Wang @ CEA-IGP
 
 ## License
 MIT 
