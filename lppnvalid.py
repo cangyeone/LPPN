@@ -96,7 +96,7 @@ class QInvertedResidual(InvertedResidual):
                     self.conv, 
                     [str(idx), str(idx + 1)], inplace=True)
 class Model(nn.Module):
-    def __init__(self, n_stride=128, n_channel=4):
+    def __init__(self, n_stride=8, n_channel=4):
         super().__init__()
         self.n_stride = n_stride # 总步长 
         base = n_channel 
@@ -131,6 +131,14 @@ class Model(nn.Module):
         )
         self.cl = nn.Conv2d(base * 5 * 2, 3, 1) 
         self.tm = nn.Conv2d(base * 5 * 2, 1, 1)
+    def fuse_model(self):
+        for m in self.modules():
+            if type(m) == ConvBNReLU:
+                fuse_modules(m, ['0', '1', '2'], inplace=True)
+            if type(m) == ConvTBNReLU:
+                fuse_modules(m, ['1', '2', '3'], inplace=True)
+            if type(m) == QInvertedResidual:
+                m.fuse_model()    
     def forward(self, x, device):
         B, C, T = x.shape 
         t = torch.arange(T) * 2 * 3.141592658 / 4 
@@ -191,6 +199,7 @@ def main(args):
     model.load_state_dict(torch.load(model_name))
     model.eval()
     model.to(device)
+    model.fuse_model()
     acc_time = 0
     file_ = open(f"{args.output}/{nchannel}-{stride}.stat.txt", "w")
     models.append(model) 
