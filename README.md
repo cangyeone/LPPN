@@ -61,7 +61,7 @@ You can run:
 ```python 
 python pick.py -i data_folder -o result -m model -d device 
 ```
-data_folder is the base folder of the data. LPPN can automatically search all the .mseed data in the folder and all the sub folders. One can pick a countinious data with typical number of phase within 2 seconds on A100 including the IO time and post process time. The name of the data must be NET.STATION.COMPONENT.OTHERINFORMATION.mseed and the three component of the data must in the same folder. However the 30s model is not suitalbe for the low SNR datas, you can contact the authors for the optimized pretrained models(Trained with ChinArray data). 
+data_folder is the base folder of the data. LPPN can automatically search all the .mseed data in the folder and all the sub folders. One can pick a countinious data with typical number of phase within 2 seconds on A100 including the IO time and post process time. The name of the data must be NET.STATION.LOCATION.COMPONENT.OTHER.INFORMATION.mseed and the three component of the data must in the same folder. However the 30s model is not suitalbe for the low SNR datas, you can contact the authors for the optimized pretrained models(Trained with ChinArray data). 
 
 **Format of result**, a demo result shown below:
 ```
