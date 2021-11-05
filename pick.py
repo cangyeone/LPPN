@@ -193,13 +193,16 @@ class Model(nn.Module):
                 nprob = score[order]
                 #print(batchstride, ntime, nprob)
                 select = -torch.ones_like(order)
+                selidx = torch.arange(0, order.numel(), 1, dtype=torch.long, device=device) 
                 count = 0
                 while True:
                     if nprob.numel()<1:
                         break 
                     ref = ntime[0]
-                    select[count] = 1 
+                    idx = selidx[0]
+                    select[idx] = 1 
                     count += 1 
+                    selidx = torch.masked_select(selidx, torch.abs(ref-ntime)>1000)
                     nprob = torch.masked_select(nprob, torch.abs(ref-ntime)>1000)
                     ntime = torch.masked_select(ntime, torch.abs(ref-ntime)>1000)
                 p_time = torch.masked_select(time_sel[order], select>0.0)
