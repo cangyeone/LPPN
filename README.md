@@ -3,6 +3,7 @@
 ![A demo pick](data/regress8.png)
 
 ## Introduction
+The comparison scripts with other DNN-based pickers are in [CSNBENCH](https://github.com/cangyeone/csnbench). The test are based on Diting data. 
 
 ### Summary
 We here present one lightweight phase picking network (LPPN) to pick P/S phases from continuous seismic recordings. It first classifies the phase type for consecutive data points with stride S, and then performs regression for accurate phase arrival time. The classification-regression approach and model optimization using deep separable convolution reduce the number of trainable parameters and ensure its computation efficiency. 
